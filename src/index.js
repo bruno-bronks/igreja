@@ -76,16 +76,16 @@ app.listen(PORT, () => {
     startBot();
 });
 
-// Agenda a tarefa para as 00:00 (Horário do servidor/computador)
-// 0 0 * * * = Todo dia à meia noite e zero minutos
-cron.schedule('0 0 * * *', () => {
-    console.log('Executando Cron Job da Meia-Noite...');
+// Agenda a tarefa para rodar de 3 em 3 horas
+// 0 */3 * * * = A cada 3 horas (00:00, 03:00, 06:00, etc)
+cron.schedule('0 */3 * * *', () => {
+    console.log('Executando Cron Job (3 em 3 horas)...');
     enviarVersiculoDoDia();
 }, {
     timezone: "America/Sao_Paulo"
 });
 
-console.log('Sistema agendado. O versículo será enviado diariamente às 00:00 BRT.');
+console.log('Sistema agendado. O versículo será enviado a cada 3 horas.');
 
 // --- DEBUG / TESTE MANUAL ---
 // Descomente as linhas abaixo para testar o envio 10 segundos após iniciar, sem esperar meia-noite
